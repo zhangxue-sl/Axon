@@ -1,0 +1,47 @@
+@baseUrl = http://127.0.0.1:8080
+
+### 
+# @name createActivity
+post {{baseUrl}}/createActivity
+content-type: application/json
+
+{
+    
+     "name":"活动1",
+     "startDate":"1111",
+     "content":"111111111",
+     "count":"90",
+     "palceId":"111"
+}
+
+###
+@id = {{createActivity.response.body.*}}
+# @name updateActivity
+post {{baseUrl}}/updateActivity
+content-type: application/json
+
+{
+    "id":"{{id}}",
+    "name":"活动1",
+    "startDate":"",
+    "content":"2222222",
+    "count":"90",
+    "palceId":""
+}
+
+###
+# @name listEventsForActivity
+get  {{baseUrl}}/listEventsForActivity/?activityId={{id}}
+
+###
+# @name countEventsActicity
+get  {{baseUrl}}/countEventsActicity/?activityId={{id}}
+
+###
+# @name getActivity
+get  {{baseUrl}}/getActivity/?activityId={{id}}
+###
+
+# @name getReversionOfActivity
+get  {{baseUrl}}/getReversionOfActivity/?activityId={{id}}&expectedVersion=0
+###

@@ -1,0 +1,39 @@
+@baseUrl = http://127.0.0.1:8080
+
+### 
+# @name createPlace
+post {{baseUrl}}/createPlace
+content-type: application/json
+
+{
+    "name":"重庆观音桥"
+   
+}
+
+###
+@id = {{createPlace.response.body.*}}
+# @name updatePlace
+post {{baseUrl}}/updatePlace
+content-type: application/json
+
+{
+    "id":"{{id}}",
+    "name":"Title2"
+}
+
+###
+# @name listEventsForPlace
+get  {{baseUrl}}/listEventsForPlace/?placeId={{id}}
+
+###
+# @name countEvents
+get  {{baseUrl}}/countEvents/?placeId={{id}}
+
+###
+# @name getPlace
+get  {{baseUrl}}/getPlace/?placeId={{id}}
+###
+
+# @name getReversionOfPlace
+get  {{baseUrl}}/getReversionOfPlace/?placeId={{id}}&expectedVersion=0
+###
