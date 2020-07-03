@@ -1,0 +1,70 @@
+@baseUrl = http://127.0.0.1:8080
+
+### 
+# @name createActivity
+post {{baseUrl}}/createActivity
+content-type: application/json
+
+{
+    
+     "name":"活动3",
+     "startDate":"2020-06-3 15:00:00",
+     "content":"111111111",
+     "count":"90",
+     "palceId":"111"
+}
+
+###
+@id = {{createActivity.response.body.*}}
+# @name updateActivity
+post {{baseUrl}}/updateActivity
+content-type: application/json
+
+{
+    "id":"{{id}}",
+    "name":"活动2",
+    "startDate":"2020-05-30 09:00:00",
+    "content":"2222222",
+    "count":"90",
+    "palceId":""
+}
+
+###
+# @name listEventsForActivity
+get  {{baseUrl}}/listEventsForActivity/?activityId={{id}}
+
+###
+# @name countEventsActicity
+get  {{baseUrl}}/countEventsActicity/?activityId={{id}}
+
+###
+# @name getActivity
+get  {{baseUrl}}/getActivity/?activityId={{id}}
+###
+
+###
+# @name getActivityByName
+get  {{baseUrl}}/getActivityByName?name=活动1
+###
+
+###
+# @name getActivityByTime
+# get  {{baseUrl}}/getActivityByTime?from=2020-07-03+15%3a30%3a00&to=2020-07-03+15%3a30%3a00
+get  {{baseUrl}}/getActivityByTime?from=2020-06-1 09:00:00&to=2020-06-4 09:00:00
+
+###
+
+
+
+###
+# @name getActivityCount
+# get  {{baseUrl}}/getActivityCount?from=2020-07-03+15%3a30%3a00&to=2020-07-03+15%3a30%3a00
+get  {{baseUrl}}/getActivityCount?from=2020-06-1 08:00:00&to=2020-06-4 09:00:00
+
+###
+
+
+
+# @name getReversionOfActivity
+get  {{baseUrl}}/getReversionOfActivity/?activityId={{id}}&expectedVersion=0
+###
